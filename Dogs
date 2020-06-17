@@ -1,0 +1,19 @@
+!git clone https://github.com/AlexeyAB/darknet
+
+!cd darknet
+!make
+
+!sed -i 's/GPU=0/GPU=1/g' Makefile
+
+!make
+
+!wget https://pjreddie.com/media/files/yolov3.weights
+!pip install opencv-python
+!pip list
+!./darknet detect cfg/yolov3.cfg yolov3.weights data/dogs.jpg
+
+file = './predictions.jpg'
+if os.path.exists(file):
+  img = cv2.imread(file)
+  show_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
+  plt.imshow(show_img)
